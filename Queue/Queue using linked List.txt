@@ -1,0 +1,102 @@
+import java.util.Scanner;
+
+class Node {
+    int element;
+    Node next;
+    
+    public Node(int element) {  //contructor
+        this.element = element;
+        this.next = null;
+    }
+}
+
+public class Queue {
+    static Node front = null;
+    static Node rear = null;
+    
+    static Scanner scanner = new Scanner(System.in); // global scanner
+
+    public static void main(String[] args) {
+        char ch;
+        int choice = 1;
+
+        while (choice == 1) {
+            System.out.println("\n[----------- Queue Menu -----------]");
+            System.out.println("A - Enqueue");
+            System.out.println("B - Dequeue");
+            System.out.println("D - Display queue content");
+            System.out.println("X - Exit");
+            System.out.print("Enter choice: ");
+            ch = scanner.next().charAt(0);
+            ch = Character.toUpperCase(ch);
+
+            switch (ch) {
+                case 'A':
+                    enqueue();
+                    break;
+                case 'B':
+                    dequeue();
+                    break;
+                case 'D':
+                    listNode();
+                    break;
+                case 'X':
+                    choice = 0;  // Exit loop
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please select A, B, D, or X.");
+            }
+        }
+
+        scanner.close();
+    }
+
+    public static void enqueue() {
+        
+        System.out.print("Enter an element: ");
+        int num = scanner.nextInt();
+               
+        Node newNode = new Node(num);
+        
+         if (front == null) {
+            front = newNode;
+            rear = newNode;
+            
+        } else {
+            rear.next = newNode;
+            rear = newNode;
+        }
+
+        System.out.println("Element added to queue.");
+    }
+
+    public static void dequeue() {
+        if (front == null) {
+            System.out.println("Queue is empty.");
+            return;
+        }
+
+        System.out.println("Dequeued element: " + front.element);
+        front = front.next;
+
+        if (front == null) {
+            rear = null; // Reset rear if queue is now empty
+        }
+    }
+
+    public static void listNode() {
+        if (front == null) {
+            System.out.println("Queue is empty.");
+            return;
+        }
+
+        System.out.println("Queue contents:");
+        
+        Node current = front;
+        while (current != null) {
+            System.out.print(current.element + "  ");
+            current = current.next;
+        }
+        System.out.println(); // newline after list
+    }
+}

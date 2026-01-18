@@ -1,0 +1,96 @@
+import java.util.Scanner;
+public class QueueArray {
+
+    static final int MAXQUEUE = 3;
+    static int[] queue = new int[MAXQUEUE];
+
+    static int front = 0;
+    static int rear = MAXQUEUE - 1;
+    static int count = 0;
+
+    static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+
+        char ch;
+
+        do {
+            System.out.println("\nThe front value is " + front);
+            System.out.println("The rear value is " + rear);
+            System.out.println("The count value is " + count);
+
+            System.out.println("\n[------- Queue Menu -------]");
+            System.out.println("A - Enqueue");
+            System.out.println("B - Dequeue");
+            System.out.println("D - Display Queue Content");
+            System.out.println("X - Exit Menu");
+            System.out.print("Please enter choice: ");
+
+            ch = Character.toUpperCase(scanner.next().charAt(0));
+
+            switch (ch) {
+                case 'A':
+                    System.out.print("\nPlease enter the number to insert into queue: ");
+                    int item = scanner.nextInt();
+                    enqueue(item);
+                    break;
+
+                case 'B':
+                    System.out.println("\nDelete the queue");
+                    dequeue();
+                    break;
+
+                case 'D':
+                    display();
+                    break;
+
+                case 'X':
+                    System.out.println("\nExit queue menu");
+                    break;
+
+                default:
+                    System.out.println("\nInvalid entry. Please select 'A','B','D','X'");
+            }
+
+        } while (ch != 'X');
+    }
+
+    public static void enqueue(int item) {
+        if (count == MAXQUEUE) {
+            System.out.println("\n!!! Queue OVERFLOW - can't insert into queue !!!");
+        } else {
+            rear = (rear + 1) % MAXQUEUE;
+            queue[rear] = item;
+            count++;
+        }
+        display();
+    }
+
+    public static void dequeue() {
+        if (count == 0) {
+            System.out.println("\n!!! Queue UNDERFLOW - can't delete queue !!!");
+        } else {
+            front = (front + 1) % MAXQUEUE;
+            count--;
+        }
+        display();
+    }
+
+    public static void display() {
+        int i = front;
+        int j = count;
+
+        System.out.println("\nContent of queue:");
+
+        if (count == 0) {
+            System.out.println("The queue is empty");
+        } else {
+            while (j != 0) {
+                System.out.print(queue[i] + "\t");
+                i = (i + 1) % MAXQUEUE;
+                j--;
+            }
+            System.out.println();
+        }
+    }
+}
