@@ -1,0 +1,40 @@
+// pseudocode for TreeSort
+
+In: Array A, size n
+Out: Array A has been sorted in increasing order
+
+Let T be an empty Binary search tree
+for i=1 to n
+   insert A[i] in T
+endfor
+Perform an inorder traversal of T:
+   when the i'th node is visited
+   insert its contents in A[i]
+
+running time
+-----------
+
+WORST CASE: if the array is already sorted, the 
+insertions in the binary search tree will take O(n^2):
+
+The first element is inserted in a tree of height 0, 
+the second element is inserted in a tree of height 1,
+...,
+the n-th element is inserted in a tree of height n-1.
+The total sum of these insertions is then O(n^2)
+
+The inorder traversal takes O(n), so the total time
+is O(n^2)
+
+AVERAGE/BEST CASE:
+The first element is inserted in a tree of height lg1 
+The second element is inserted in a tree of height lg2 
+The third element is inserted in a tree of height lg3 
+The n-th element is inserted in a tree of height lgn
+
+Adding all these up, we get:
+lg1 + lg2 + ... +lgn = lg(1*2*...*n) = lg(n!) = O(nlgn)
+
+The inorder traversal takes O(n), so the total time 
+is O(nlgn).
+

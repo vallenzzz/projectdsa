@@ -1,0 +1,32 @@
+import java.util.Scanner;
+/**
+ *
+ * @author User
+ */
+public class Iterative_factorial
+ {
+
+    public static void main(String[] args) {
+    // creates an object of Scanner
+     Scanner input = new Scanner(System.in);
+        System.out.print("Enter a positive number: ");
+        int number = input.nextInt();
+        int factNum = fact(number);
+        System.out.printf("Factorial number for %d! = %d %n", number,
+                factNum);
+    }
+    
+    
+	/**
+	 * Iterative factorial
+	 */
+	public static int fact(int number) {
+        int result = 1;
+        for (int i = number; i > 1; i--) {
+            result = result * i;
+        }
+        return result;
+    }
+        
+    
+}
