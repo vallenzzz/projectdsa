@@ -55,4 +55,4 @@ public class Main {
         System.out.println("Number of comparisons: " + count);
     }
 }
-This Java code reads data from a file and performing a linear sequential search.
+
